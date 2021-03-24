@@ -1,0 +1,51 @@
+#https://www.codewars.com/kata/5fbe88bb567fcd0012554ba7
+
+#Description
+
+You are responsible for getting everyone a mask at the meeting. If there's enough masks, return 0. If too much, return how much is leftover. Lastly, if not enough masks, return how much more is needed.
+
+For example:
+masks = 29
+people = 20
+
+Masks are left over, so return how much exactly is leftover, 9.
+
+masks = 12
+people = 30
+
+Not enough masks, so return how much exactly is needed, 18.
+
+masks = 15
+people = 15
+
+Enough masks, not too much, not not-enough, so return 0.
+
+
+
+#Solution
+
+def enough_masks(masks, people):
+    return abs(masks - people)
+
+
+
+#Test Cases
+
+@test.describe("enough_masks")
+def cd():
+    @test.it("Fixed tests")
+    def __():
+        test.assert_equals(enough_masks(10,10), 0)
+        test.assert_equals(enough_masks(15,60), 45)
+        test.assert_equals(enough_masks(1,3), 2)
+        test.assert_equals(enough_masks(19,20), 1)
+        test.assert_equals(enough_masks(13,13), 0)
+        test.assert_equals(enough_masks(18,10), 8)
+@test.it("Random tests")
+def __():
+    from random import randint
+    for i in range(100):
+        a = randint(1, 100)
+        b = randint(1, 100)
+        expected = abs(a - b)
+        test.assert_equals(enough_masks(a, b), expected)
