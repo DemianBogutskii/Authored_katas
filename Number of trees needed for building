@@ -1,0 +1,107 @@
+#https://www.codewars.com/kata/6011915d02134e001bc4fbba/discuss#604fbe70bf2f020008e6b4b2
+
+
+
+
+
+
+#Test Cases
+
+
+
+from random import randint
+import codewars_test as test
+from solution import num_of_trees
+
+# this version shows input in error messages, keeping test output minimal
+# if using this, the decorators should be `it` since this only asserts
+def check(arr, logs, expected):
+    test.assert_equals(
+        num_of_trees(arr, logs), expected, f"num_of_trees({arr!r}, {logs!r})"
+    )
+
+
+# # this one instead puts the input in the `it` titles
+# # if using this, the other decorators should be `describe` so that they group
+# # these `it`s.
+# def check(arr, logs, expected):
+#     test.it(f"num_of_trees({arr!r}, {logs!r})")(
+#         lambda: test.assert_equals(num_of_trees(arr, logs), expected)
+#     )
+
+
+@test.it("Basic Test Cases")
+def basic_test_cases():
+    check([(10, 5), (30, 4), (8, 6)], 5, 44)
+    check([(50, 8), (100, 1), (8, 7), (9, 10)], 10, 65)
+    check([(5, 6), (99, 2), (3, 7), (1, 5)], 7, 37)
+    check([(7, 10)], 2, 35)
+
+
+@test.it("Random Test Cases")
+def random_tests():
+    def _num_of_trees(inp, num):
+        n = sum([el[0] * el[1] for el in inp])
+        return n // num + (n % num > 0)
+
+    def generate_random():
+        l = randint(1, 10)
+        arr = []
+        for i in range(l):
+            arr.append((randint(1, 50), randint(1, 50)))
+        logs = randint(1, 10)
+        return arr, logs
+
+    for i in range(100):
+        arr, logs = generate_random()
+        exp = _num_of_trees(arr, logs)
+        check(arr, logs, exp)
+
+
+
+
+
+#Description
+
+
+Return the sum of trees needed, rounded up.
+
+The function recieves a array of tuples, input. The first element of tuple is the amount of logs needed for the model, and the second element of tuple is the number of models built.
+
+Also, the function recieves an integer number num, which is the amount of logs per tree.
+
+All inputs are integers and valid.
+
+Examples:
+  inp = [(10, 5), (30, 4), (8, 6)]
+  num = 5
+output --> 44
+
+*picture*
+
+P.S. Please rank this kata to help it come out of beta. Thank you ;)
+
+
+
+
+
+#Python Solution
+
+
+def num_of_trees(inp, num):
+    n = sum([el[0] * el[1] for el in inp])
+    return n // num + (n % num > 0)
+
+
+#Javascript Solution
+
+
+function numOfTrees(inp, num){
+  let sum = 0;
+  for (let i = 0;i < inp.length; i++){
+    sum += inp[i][0] * inp[i][1];
+  }
+  return Math.ceil(sum / num);
+}
+
+#Please Rank This KATA!
