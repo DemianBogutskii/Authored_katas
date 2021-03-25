@@ -1,0 +1,36 @@
+#https://www.codewars.com/kata/5fc126815717fc000c811c11
+
+#Solution
+
+def percentage_value(number, percent):
+    return round(number / 100 * percent)
+    
+
+#Description
+
+Max needs to find the percentage of the given number for the upcoming test, but he doesn't know how to do it. HELP MAX!!!!
+
+Write a function that gets two numbers (a number and percentage) and returns a percentage of the given number rounded to nearest integer.
+
+Examples in sample tests.
+
+
+
+#Tests
+
+@test.describe("percentage_value")
+def cd():
+    @test.it("Fixed tests")
+    def __():
+        test.assert_equals(percentage_value(30,20), 6)
+        test.assert_equals(percentage_value(36, 18), 6)
+        test.assert_equals(percentage_value(100,32), 32)
+        test.assert_equals(percentage_value(1,200), 2)
+@test.it("Random tests")
+def __():
+    from random import randint
+    for i in range(100):
+        a = randint(1, 100)
+        b = randint(1, 100)
+        expected = round(a / 100 * b)
+        test.assert_equals(percentage_value(a, b), expected)
