@@ -1,0 +1,10 @@
+# A test to stop some of the cheater methods;
+
+@test.describe("Cheat Detection")
+def all_tests():
+    @test.it("Cheater")
+    def cheat():
+        solution = open("/workspace/solution.txt", 'r').read()
+        test.assert_equals(solution.find("clear") + 1, 0, "Cheater!")
+
+#Checks if a command to change the tests in thу kata is used.
